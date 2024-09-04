@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload and Download</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        #downloadBtn {
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Choose a File to Download</h1>
+    <input type="file" id="fileInput">
+    <a id="downloadBtn" href="#" download>Download Selected File</a>
+
+    <script>
+        const fileInput = document.getElementById('fileInput');
+        const downloadBtn = document.getElementById('downloadBtn');
+
+        fileInput.addEventListener('change', function() {
+            const file = fileInput.files[0];
+            if (file) {
+                const url = URL.createObjectURL(file);
+                downloadBtn.href = url;
+                downloadBtn.download = file.name;
+                downloadBtn.style.display = 'inline';
+            } else {
+                downloadBtn.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
